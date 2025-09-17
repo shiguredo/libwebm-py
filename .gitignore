@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+_build/
+_source/
+_install/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# ref
+ref/
+
+# Claude Code
+.claude/
+
+# Codex
+.codex/
