@@ -26,6 +26,10 @@ Discord = "https://discord.gg/shiguredo"
 requires = ["scikit-build-core>=0.11", "nanobind>=2.9"]
 build-backend = "scikit_build_core.build"
 
+[dependency-groups]
+test = ["pytest", "pytest-timeout", "numpy"]
+lint = ["ruff", "ty"]
+
 [tool.scikit-build]
 minimum-version = "0.11"
 sdist.include = ["VERSION"]
@@ -50,13 +54,7 @@ regex = "^(?P<value>.+)$"
 [tool.uv]
 package = true
 managed = true
-dev-dependencies = [
-    "pytest",
-    "pytest-timeout",
-    "numpy",
-    "ruff",
-    "ty",
-]
+default-groups = ["test", "lint"]
 
 [tool.ruff]
 target-version = "py311"
