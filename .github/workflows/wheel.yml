@@ -48,16 +48,12 @@ jobs:
         platform:
           - name: ubuntu-24.04_x86_64
             runs_on: ubuntu-24.04
-            plat: manylinux_2_39_x86_64
           - name: ubuntu-24.04_arm64
             runs_on: ubuntu-24.04-arm
-            plat: manylinux_2_39_aarch64
           - name: ubuntu-22.04_x86_64
             runs_on: ubuntu-22.04
-            plat: manylinux_2_35_x86_64
           - name: ubuntu-22.04_arm64
             runs_on: ubuntu-22.04-arm
-            plat: manylinux_2_35_aarch64
         python_version:
           - "3.11"
           - "3.12"
@@ -74,15 +70,11 @@ jobs:
 
       - name: Build wheel
         run: uv build --wheel
-      - name: Repair wheel with auditwheel (uvx)
+      - name: Repair wheel with auditwheel and patchelf
         shell: bash
         run: |
-          mkdir -p wheelhouse
-          # auditwheel と patchelf を一時ツール環境で実行
-          uvx --from auditwheel auditwheel --version
-          uvx --with patchelf --from auditwheel auditwheel show dist/*.whl || true
-          # manylinux 互換の wheel に修復（ホスト上）
-          uvx --with patchelf --from auditwheel auditwheel repair dist/*.whl -w wheelhouse --plat ${{ matrix.platform.plat }} --only-plat
+          uv sync --group pypi
+          uv run auditwheel repair dist/*.whl -w wheelhouse --only-plat
       - name: Upload Repaired Wheels
         uses: actions/upload-artifact@v5
         with:

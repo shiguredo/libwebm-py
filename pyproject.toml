@@ -28,6 +28,7 @@ Source = "https://github.com/shiguredo/libwebm-py"
 Discord = "https://discord.gg/shiguredo"
 
 [dependency-groups]
+pypi = ["auditwheel", "patchelf"]
 test = ["pytest", "pytest-timeout", "numpy"]
 lint = ["ruff", "ty"]
 
