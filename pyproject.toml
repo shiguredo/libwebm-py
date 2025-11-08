@@ -28,7 +28,6 @@ Source = "https://github.com/shiguredo/libwebm-py"
 Discord = "https://discord.gg/shiguredo"
 
 [dependency-groups]
-dev = ["scikit-build-core", "nanobind"]
 test = ["pytest", "pytest-timeout", "numpy"]
 lint = ["ruff", "ty"]
 
