@@ -23,7 +23,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(libwebm)
 
 # Find Python and nanobind
-find_package(Python 3.11 COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
 execute_process(
   COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
   OUTPUT_VARIABLE NB_DIR
