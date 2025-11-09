@@ -28,9 +28,10 @@ Source = "https://github.com/shiguredo/libwebm-py"
 Discord = "https://discord.gg/shiguredo"
 
 [dependency-groups]
-pypi = ["auditwheel", "patchelf"]
+dev = [{ include-group = "test" }, { include-group = "lint" }]
 test = ["pytest", "pytest-timeout", "numpy"]
 lint = ["ruff", "ty"]
+pypi = ["auditwheel", "patchelf"]
 
 [tool.scikit-build]
 minimum-version = "0.11"
@@ -56,7 +57,7 @@ regex = "^(?P<value>.+)$"
 [tool.uv]
 package = false
 managed = true
-default-groups = ["test", "lint"]
+python-preference = "only-managed"
 
 [tool.ruff]
 target-version = "py311"
