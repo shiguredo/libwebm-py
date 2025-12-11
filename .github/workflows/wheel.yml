@@ -21,15 +21,14 @@ jobs:
           - name: macos-14_arm64
             runs_on: macos-14
         python_version:
-          - "3.11"
-          - "3.12"
-          - "3.13"
           - "3.14"
+          - "3.13"
+          - "3.12"
     runs-on: ${{ matrix.platform.runs_on }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: false
           python-version: ${{ matrix.python_version }}
@@ -55,15 +54,14 @@ jobs:
           - name: ubuntu-22.04_arm64
             runs_on: ubuntu-22.04-arm
         python_version:
-          - "3.11"
-          - "3.12"
-          - "3.13"
           - "3.14"
+          - "3.13"
+          - "3.12"
     runs-on: ${{ matrix.platform.runs_on }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: false
           python-version: ${{ matrix.python_version }}
@@ -89,15 +87,14 @@ jobs:
           - name: windows-2025_x86_64
             runs_on: windows-2025
         python_version:
-          - "3.11"
-          - "3.12"
-          - "3.13"
           - "3.14"
+          - "3.13"
+          - "3.12"
     runs-on: ${{ matrix.platform.runs_on }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
           python-version: ${{ matrix.python_version }}
@@ -127,10 +124,9 @@ jobs:
           - name: macos-14_arm64
           - name: windows-2025_x86_64
         python_version:
-          - "3.11"
-          - "3.12"
-          - "3.13"
           - "3.14"
+          - "3.13"
+          - "3.12"
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: pypi
@@ -155,9 +151,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Download all artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           path: artifacts/
       - name: Create release files list
