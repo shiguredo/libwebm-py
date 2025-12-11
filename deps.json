@@ -1,0 +1,6 @@
+{
+  "libwebm": {
+    "version": "libwebm-1.0.0.32",
+    "url": "https://chromium.googlesource.com/webm/libwebm"
+  }
+}

@@ -11,11 +11,24 @@ include(FetchContent)
 # Force Position Independent Code for all targets
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Download libwebm from GitHub
+# JSON から依存関係のバージョンを読み込み
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/deps.json DEPS_JSON)
+
+# libwebm の設定を解析
+string(JSON LIBWEBM_VERSION GET ${DEPS_JSON} libwebm version)
+string(JSON LIBWEBM_URL GET ${DEPS_JSON} libwebm url)
+
+# バージョンから libwebm- prefix を削除
+string(REPLACE "libwebm-" "" LIBWEBM_VERSION_NUMBER ${LIBWEBM_VERSION})
+
+message(STATUS "libwebm version: ${LIBWEBM_VERSION}")
+message(STATUS "libwebm URL: ${LIBWEBM_URL}")
+
+# Download libwebm from chromium.googlesource.com
 FetchContent_Declare(
   libwebm
-  GIT_REPOSITORY https://github.com/webmproject/libwebm.git
-  GIT_TAG        libwebm-1.0.0.32
+  GIT_REPOSITORY ${LIBWEBM_URL}
+  GIT_TAG        ${LIBWEBM_VERSION}
   GIT_SHALLOW    TRUE
 )
 
